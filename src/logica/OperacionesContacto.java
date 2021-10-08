@@ -1,5 +1,6 @@
 package logica;
 
+import files.ManejadorArchivos;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +12,18 @@ public class OperacionesContacto {
     public void agregarContacto(Contacto contacto){
         int cons = guardados.size() +1; 
         contacto.num = cons; 
-        guardados.add(contacto); 
+        guardados.add(contacto);
+        ManejadorArchivos archivo = new ManejadorArchivos();
+        boolean res = archivo.agregarDato(contacto); 
+        if(res)
+            System.out.println("Se grabo correctamente");
+        else 
+            System.out.println("No se grabo");
+    }
+    
+    public void inicializarLista(){
+        ManejadorArchivos archivo = new ManejadorArchivos();
+        guardados = archivo.leerDatos();         
     }
     
     public String[][] obtenerContactos(){
@@ -40,5 +52,34 @@ public class OperacionesContacto {
             }
         }
         return listaContactos;
+    }
+    
+    public Contacto buscarContacto(int num){         
+        Contacto contacto = null; 
+        for(int i=0;i<guardados.size();i++){
+            Contacto c = guardados.get(i); 
+            if(c.num==num){
+                contacto=c; 
+                break; 
+            }
+        }
+        return contacto;
+    }
+
+    public void modificarContacto(Contacto contacto) {
+        boolean update = false; 
+        for(int i=0;i<guardados.size();i++){
+            Contacto c = guardados.get(i); 
+            if(c.num==contacto.num){
+                guardados.set(i, contacto); 
+                update = true; 
+                break; 
+            }
+        }
+        if(update)
+        {
+            ManejadorArchivos archivo = new ManejadorArchivos();
+            archivo.agregarDatos(guardados);
+        }
     }
 }
