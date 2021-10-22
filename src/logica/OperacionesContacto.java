@@ -1,5 +1,6 @@
 package logica;
 
+import basedatos.ManejadorBaseDatos;
 import files.ManejadorArchivos;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +14,8 @@ public class OperacionesContacto {
         int cons = guardados.size() +1; 
         contacto.num = cons; 
         guardados.add(contacto);
-        ManejadorArchivos archivo = new ManejadorArchivos();
+        //ManejadorArchivos archivo = new ManejadorArchivos();
+        ManejadorBaseDatos archivo = new ManejadorBaseDatos();
         boolean res = archivo.agregarDato(contacto); 
         if(res)
             System.out.println("Se grabo correctamente");
@@ -22,7 +24,8 @@ public class OperacionesContacto {
     }
     
     public void inicializarLista(){
-        ManejadorArchivos archivo = new ManejadorArchivos();
+        // ManejadorArchivos archivo = new ManejadorArchivos();
+        ManejadorBaseDatos archivo = new ManejadorBaseDatos();
         guardados = archivo.leerDatos();         
     }
     
@@ -78,7 +81,8 @@ public class OperacionesContacto {
         }
         if(update)
         {
-            ManejadorArchivos archivo = new ManejadorArchivos();
+            //ManejadorArchivos archivo = new ManejadorArchivos();
+            ManejadorBaseDatos archivo = new ManejadorBaseDatos();
             archivo.agregarDatos(guardados);
         }
     }

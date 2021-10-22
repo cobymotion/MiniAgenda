@@ -6,6 +6,7 @@
 package vistas;
 
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 import logica.Contacto;
 import logica.OperacionesContacto;
 
@@ -33,6 +34,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 new DefaultTableModel(operaciones.obtenerContactos(),
                                        columnas);
         jTable1.setModel(modelo);
+        estilizarTabla();
     }
     
     /**
@@ -94,6 +96,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         jButton1.setText("Cerrar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Agregar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -179,6 +186,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jTable1.setModel(modelo);
     }//GEN-LAST:event_filtratabla
 
+    
+    private void estilizarTabla(){
+        TableColumnModel columModel = jTable1.getColumnModel();
+        columModel.getColumn(0).setMaxWidth(80);
+        columModel.getColumn(2).setMaxWidth(150);
+    }
+    
     private void ModificarEvent(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarEvent
         // TODO add your handling code here:
         if(jTable1.getSelectedRow()!=-1)
@@ -192,6 +206,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             acomodaTabla();
         }
     }//GEN-LAST:event_ModificarEvent
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -25,10 +25,10 @@ public class ManejadorArchivos {
             try {
                 FileInputStream fis = new FileInputStream(archivo); 
                 ObjectInputStream ois ; 
-                while(fis.available()>0){
-                    ois = new ObjectInputStream(fis); 
+                ois = new ObjectInputStream(fis); 
+                while(fis.available()>0){                    
                     Contacto persona = (Contacto) ois.readObject(); 
-                    contactos.add(persona);
+                    contactos.add(persona);                    
                 }                    
             } catch (Exception e) {
                 System.out.println("Error");
